@@ -15,12 +15,8 @@ void create_file()
     fclose(file);
 }
 
-void write_to_file()
+void write_to_file(const char *content)
 {
-    char content[256];
-    printf("Enter the content to write into the file: ");
-    fgets(content, sizeof(content), stdin);
-
     FILE *file = fopen("Relation.txt", "a");
     if (file == NULL)
     {
@@ -51,7 +47,12 @@ int main()
     {
         // This is the parent process
         wait(NULL); // Wait for the child process to complete
-        write_to_file();
+
+        char content[256];
+        printf("Enter the content to write into the file: ");
+        fgets(content, sizeof(content), stdin);
+
+        write_to_file(content);
     }
 
     return 0;
